@@ -32,12 +32,9 @@ public class Main {
         System.out.println("contains 15? " + intCollection.contains(15));
         System.out.println("isEmpty? " + intCollection.isEmpty());
 
-        AdvancedList<Integer> newCollection = intCollection.shuffle();
+        MyCollection<Integer> newCollection = (MyCollection<Integer>) intCollection.shuffle();
         System.out.println("shuffle");
-        for (int i = 0; i < newCollection.size(); i++){
-            System.out.print(newCollection.get(i).get() + " ");
-        }
-        System.out.println();
+        newCollection.print();
 
         intCollection.print();
 
@@ -57,34 +54,31 @@ public class Main {
         strCollection.print();
 
         MyCollection<Test> testMyCollection = new MyCollection<>();
-        testMyCollection.add(new Test(3, "Tim"));
-        testMyCollection.add(new Test(1, "Iren"));
-        testMyCollection.add(new Test(2, "Rick"));
-        testMyCollection.add(new Test(4, "Morty"));
+        testMyCollection.add(new Test(3, "Tim", 26));
+        testMyCollection.add(new Test(1, "Iren", 26));
+        testMyCollection.add(new Test(2, "Rick", 150));
+        testMyCollection.add(new Test(4, "Morty", 13));
 
+        System.out.println("Source collection");
+        testMyCollection.print();
 
-        for (int i = 0; i < testMyCollection.size(); i++){
-            System.out.print(testMyCollection.get(i).get().getNumber() + " " + testMyCollection.get(i).get().getName() + ", ");
-        }
+        MyCollection<Test> sortByNumberTestMyCollection = (MyCollection<Test>) testMyCollection.sort(Test::compareTo);
 
-        System.out.println();
+        System.out.println("Collection sorted by number");
+        sortByNumberTestMyCollection.print();
 
-        MyCollection<Test> sortTestMyCollection = (MyCollection<Test>) testMyCollection.sort(Test::compareTo);
-        for (int i = 0; i < sortTestMyCollection.size(); i++){
-            System.out.print(sortTestMyCollection.get(i).get().getNumber() + " " + sortTestMyCollection.get(i).get().getName()  + ", " );
-        }
+        AgeComparator ageComparator = new AgeComparator();
+        MyCollection<Test> sortByAgeTestMyCollection = (MyCollection<Test>) testMyCollection.sort(ageComparator);
 
-        System.out.println();
-        for (int i = 0; i < testMyCollection.size(); i++){
-            System.out.print(testMyCollection.get(i).get().getNumber() + " " + testMyCollection.get(i).get().getName()  + ", ");
-        }
+        System.out.println("Collection sorted by age");
+        sortByAgeTestMyCollection.print();
 
         MyCollection<Test> shuffleTestMyCollection = (MyCollection<Test>) testMyCollection.shuffle();
 
-        System.out.println();
-        for (int i = 0; i < shuffleTestMyCollection.size(); i++){
-            System.out.print(shuffleTestMyCollection.get(i).get().getNumber() + " " + shuffleTestMyCollection.get(i).get().getName()  + ", ");
-        }
+        System.out.println("Mixed collection");
+        shuffleTestMyCollection.print();
 
+        System.out.println("Source collection");
+        testMyCollection.print();
     }
 }
