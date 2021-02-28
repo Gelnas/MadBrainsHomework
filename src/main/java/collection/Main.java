@@ -56,5 +56,35 @@ public class Main {
         newStrCollection.print();
         strCollection.print();
 
+        MyCollection<Test> testMyCollection = new MyCollection<>();
+        testMyCollection.add(new Test(3, "Tim"));
+        testMyCollection.add(new Test(1, "Iren"));
+        testMyCollection.add(new Test(2, "Rick"));
+        testMyCollection.add(new Test(4, "Morty"));
+
+
+        for (int i = 0; i < testMyCollection.size(); i++){
+            System.out.print(testMyCollection.get(i).get().getNumber() + " " + testMyCollection.get(i).get().getName() + ", ");
+        }
+
+        System.out.println();
+
+        MyCollection<Test> sortTestMyCollection = (MyCollection<Test>) testMyCollection.sort(Test::compareTo);
+        for (int i = 0; i < sortTestMyCollection.size(); i++){
+            System.out.print(sortTestMyCollection.get(i).get().getNumber() + " " + sortTestMyCollection.get(i).get().getName()  + ", " );
+        }
+
+        System.out.println();
+        for (int i = 0; i < testMyCollection.size(); i++){
+            System.out.print(testMyCollection.get(i).get().getNumber() + " " + testMyCollection.get(i).get().getName()  + ", ");
+        }
+
+        MyCollection<Test> shuffleTestMyCollection = (MyCollection<Test>) testMyCollection.shuffle();
+
+        System.out.println();
+        for (int i = 0; i < shuffleTestMyCollection.size(); i++){
+            System.out.print(shuffleTestMyCollection.get(i).get().getNumber() + " " + shuffleTestMyCollection.get(i).get().getName()  + ", ");
+        }
+
     }
 }

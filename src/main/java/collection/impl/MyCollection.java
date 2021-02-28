@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MyCollection<T> implements AdvancedList<T>, AuthorHolder {
 
-    private static final String AUTHOR = "Gelnaz";
+    private final String AUTHOR = "Gelnaz";
 
     private T[] container;
     private int numberItems;
